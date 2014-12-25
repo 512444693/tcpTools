@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Main{
     public static void main(String[] args)throws UnknownHostException{
-        new Main().test2();
+        new Main().test3();
     }
     void test() throws UnknownHostException {
         byte[] data = new byte[0];
