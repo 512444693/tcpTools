@@ -64,4 +64,15 @@ public class BufferMgr {
                 break;
         }
     }
+
+    /**
+     * 加入数据的长度
+     */
+    public void encode(){
+        byte[] head = ByteUtils.subBytes(buffer,0,8);
+        int len = buffer.length-8;
+        byte[] tail = ByteUtils.subBytes(buffer,8,buffer.length-8);
+        buffer = ByteUtils.bytesMerger(head,ByteUtils.int2Bytes(len));
+        buffer = ByteUtils.bytesMerger(buffer,tail);
+    }
 }
