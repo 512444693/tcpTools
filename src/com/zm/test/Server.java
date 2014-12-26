@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
+/*
  * Created by zhangmin on 2014/12/24.
  */
 public class Server {
@@ -27,7 +27,6 @@ public class Server {
                 System.out.println(ByteUtils.bytes2HexGoodLook(ByteUtils.subBytes(data,0,len)));
             }
             s.shutdownInput();
-
             out.write("123".getBytes());
             out.flush();
             s.shutdownOutput();

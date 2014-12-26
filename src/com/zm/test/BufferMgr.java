@@ -20,7 +20,8 @@ public class BufferMgr {
         switch (data.getDataType())
         {
             case ONEBYTE:
-                byte b = Byte.parseByte(data.getDataValue());
+                //byte b = Byte.parseByte(data.getDataValue()); 只能转换-127-128
+                byte b =(byte) Integer.parseInt(data.getDataValue());
                 buffer = ByteUtils.bytesMerger(buffer,b);
                 break;
             case TWOBYTES:

@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-/**
- * Created by Administrator on 2014/12/24.
+/*
+ * Created by zhangmin on 2014/12/24.
  */
 public class Main{
     public static void main(String[] args)throws UnknownHostException{
-        new Main().test3();
+        System.out.println();
     }
     void test() throws UnknownHostException {
         byte[] data = new byte[0];

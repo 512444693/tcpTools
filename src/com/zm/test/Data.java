@@ -45,8 +45,46 @@ public class Data {
     public void setDataValue(String dataValue) {
         this.dataValue = dataValue;
     }
-    public Data(DataType dataType, String dataName, String dataValue)
+    public Data(DataType dataType, String dataName, String dataValue)throws IllegalArgumentException
     {
+        if(dataName.equals(""))
+            throw new IllegalArgumentException("名字不要为空哦");
+        if(dataValue.equals(""))
+            throw new IllegalArgumentException(dataName+"： 数据为空哦");
+        switch (dataType)
+        {
+            case ONEBYTE:
+                if(!dataValue.matches("[0-9]{1,3}"))
+                    throw new IllegalArgumentException(dataName+"： 请输入正确的1个字节的数据");
+                break;
+            case TWOBYTES:
+                if(!dataValue.matches("[0-9]{1,5}"))
+                    throw new IllegalArgumentException(dataName+"： 请输入正确的2个字节的数据");
+                break;
+            case FOURBYTES:
+                if(!dataValue.matches("[0-9]{1,10}"))
+                    throw new IllegalArgumentException(dataName+"： 请输入正确的4个字节的数据");
+                break;
+            case IP:
+                if(!dataValue.matches("[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}"))
+                    throw new IllegalArgumentException(dataName+"： 请输入正确的ip地址");
+                break;
+            case EIGHTBYTES:
+                if(!dataValue.matches("[0-9]{1,}"))
+                    throw new IllegalArgumentException(dataName+"： 请输入正确的8个字节的数据");
+                break;
+            case STRING:
+                break;
+            case HEXSTRING:
+                String tmp = dataValue.toUpperCase();
+                for(int i =0; i<tmp.length(); i++)
+                {
+                    char c = tmp.charAt(i);
+                    if(ByteUtils.charToByte(c) == -1)
+                        throw new IllegalArgumentException(dataName+"： 请输入正确的16进制数据");
+        }
+                break;
+        }
         this.dataType = dataType;
         this.dataName = dataName;
         this.dataValue = dataValue;
