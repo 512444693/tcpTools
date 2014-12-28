@@ -58,8 +58,8 @@ public class MyFrame extends JFrame {
         panelOpt.add(buttonAdd);
         panelOpt.add(buttonSend);
         panelLeft = new JPanel();
-        textIP = new JTextField("127.0.0.1",10);
-        textPort = new JTextField("80",6);
+        textIP = new JTextField("127.0.0.1",17);
+        textPort = new JTextField("8189",6);
         panelIP = new JPanel();
         panelIP.add(textIP);
         panelIP.add(textPort);
@@ -76,6 +76,7 @@ public class MyFrame extends JFrame {
 
         panelConf.add(new PanelData(DataType.FOURBYTES,"Protocol","200"));
         panelConf.add(new PanelData(DataType.FOURBYTES,"Sequence","1"));
+        panelConf.add(new PanelData(DataType.ONEBYTE,"CmdId","80"));
         panelConf.validate();
     }
     void sendData() throws IllegalArgumentException, UnknownHostException {
@@ -93,6 +94,8 @@ public class MyFrame extends JFrame {
             String dataValue = jTextField2.getText();
             bufferMgr.put(new Data(dataType,dataName,dataValue));
         }
+        bufferMgr.encode();
+
         byte[] dataRec = null;
         try {
             if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer())) != null)
@@ -105,7 +108,8 @@ public class MyFrame extends JFrame {
                 JOptionPane.showMessageDialog(null,"接收数据失败");
             }
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,"发送数据出错,服务器可能没启动哦");
+            JOptionPane.showMessageDialog(null,"发送数据出错,服务器可能没启动哦   Ip，端口写对了吗？");
+            e.printStackTrace();
         }
     }
     class ButtonSendAction implements ActionListener{

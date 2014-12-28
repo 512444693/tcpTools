@@ -21,7 +21,7 @@ public class Server {
             BufferedOutputStream out = new BufferedOutputStream(s.getOutputStream());
             byte[] data = new byte[1024];
             int len;
-            while((len = in.read(data)) != -1)
+            if((len = in.read(data)) != -1)
             {
                 //System.out.print(new String(data,0,len));
                 System.out.println(ByteUtils.bytes2HexGoodLook(ByteUtils.subBytes(data,0,len)));

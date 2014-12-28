@@ -33,7 +33,7 @@ public class Tcp {
 
             out.write(data);
             out.flush();
-            s.shutdownOutput();
+            //s.shutdownOutput();
 
             byte[] dataTemp = new byte[2014];
             int len = 0;
