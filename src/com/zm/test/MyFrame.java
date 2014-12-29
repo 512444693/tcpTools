@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2014/12/25.
@@ -29,6 +30,7 @@ public class MyFrame extends JFrame {
 
     JButton buttonAdd;
     JButton buttonSend;
+    JButton buttonClear;
     JPanel panelOpt;
 
     JPanel panelLeft;
@@ -54,8 +56,11 @@ public class MyFrame extends JFrame {
         buttonAdd.addActionListener(new ButtonAddAction());
         buttonSend = new JButton("发送");
         buttonSend.addActionListener(new ButtonSendAction());
+        buttonClear = new JButton("初始化");
+        buttonClear.addActionListener(new ButtonClearActioin());
         panelOpt = new JPanel();
         panelOpt.add(buttonAdd);
+        panelOpt.add(buttonClear);
         panelOpt.add(buttonSend);
         panelLeft = new JPanel();
         textIP = new JTextField("127.0.0.1",17);
@@ -74,10 +79,15 @@ public class MyFrame extends JFrame {
         this.add(panelLeft);
         this.add(panelRight);
 
+        panelConfInit();
+    }
+    void panelConfInit()
+    {
         panelConf.add(new PanelData(DataType.FOURBYTES,"Protocol","200"));
         panelConf.add(new PanelData(DataType.FOURBYTES,"Sequence","1"));
         panelConf.add(new PanelData(DataType.ONEBYTE,"CmdId","80"));
         panelConf.validate();
+        panelConf.repaint();
     }
     void sendData() throws IllegalArgumentException, UnknownHostException {
         BufferMgr bufferMgr = new BufferMgr();
@@ -100,8 +110,8 @@ public class MyFrame extends JFrame {
         try {
             if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer())) != null)
             {
-                textSend.setText(ByteUtils.bytes2HexGoodLook(bufferMgr.getBuffer()).toString());
-                textRec.setText(ByteUtils.bytes2HexGoodLook(dataRec).toString());
+                textSend.setText(new Date().toLocaleString()+"\r\n\r\n"+ByteUtils.bytes2HexGoodLook(bufferMgr.getBuffer()).toString());
+                textRec.setText(new Date().toLocaleString()+"\r\n\r\n"+ByteUtils.bytes2HexGoodLook(dataRec).toString());
             }
             else
             {
@@ -135,18 +145,30 @@ public class MyFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             panelConf.add(new PanelData());
             panelConf.validate();
+            panelConf.repaint();
         }
     }
-    class PanelData extends JPanel{
+    class ButtonClearActioin implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            panelConf.removeAll();
+            panelConfInit();
+            textRec.setText("");
+            textSend.setText("");
+        }
+    }
+    class PanelData extends JPanel implements ActionListener{
         private MyComboBox CBDataType;
         private JTextField JTFDataName;
         private JTextField JTFDataValue;
+        private JButton JButtonDelete;
         public PanelData(DataType dataType, String dataName, String dataValue)
         {
             CBDataType = new MyComboBox();
             CBDataType.setSelectedIndex(getDataTypeIndex(dataType));
             JTFDataName = new JTextField(dataName,8);
-            JTFDataValue = new JTextField(dataValue,50);
+            JTFDataValue = new JTextField(dataValue,51);
             this.add(CBDataType);
             this.add(JTFDataName);
             this.add(JTFDataValue);
@@ -155,10 +177,13 @@ public class MyFrame extends JFrame {
         {
             CBDataType = new MyComboBox();
             JTFDataName = new JTextField(8);
-            JTFDataValue = new JTextField(50);
+            JTFDataValue = new JTextField(41);
+            JButtonDelete = new JButton("删除");
+            JButtonDelete.addActionListener(this);
             this.add(CBDataType);
             this.add(JTFDataName);
             this.add(JTFDataValue);
+            this.add(JButtonDelete);
         }
 
         public MyComboBox getCBDataType() {
@@ -183,6 +208,13 @@ public class MyFrame extends JFrame {
 
         public void setJTFDataValue(JTextField JTFDataValue) {
             this.JTFDataValue = JTFDataValue;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            panelConf.remove(PanelData.this);
+            panelConf.validate();
+            panelConf.repaint();
         }
     }
     class MyComboBox extends JComboBox{
