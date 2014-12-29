@@ -1,10 +1,32 @@
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * Created by zhangmin on 2014/12/24.
  */
+public class Main{
+    public static void main(String[] args)throws UnknownHostException{
+        BufferMgr bufferMgr = new BufferMgr();
+        bufferMgr.put(new Data(DataType.ONEBYTE,"onebyte","89"));
+        bufferMgr.put(new Data(DataType.TWOBYTES,"twobytes","89"));
+        bufferMgr.put(new Data(DataType.FOURBYTES,"fourbytes","89"));
+        bufferMgr.put(new Data(DataType.IP,"ip","127.0.0.1"));
+        bufferMgr.put(new Data(DataType.EIGHTBYTES,"eightbytes","89"));
+        bufferMgr.put(new Data(DataType.STRING,"string","123"));
+        bufferMgr.put(new Data(DataType.HEXSTRING,"hexstring","123abcdeeff012938374abcdef"));
+
+        Data d1 = new Data(DataType.ONEBYTE,"1");bufferMgr.get(d1);System.out.println(d1.getDataValue());
+        Data d2 = new Data(DataType.TWOBYTES,"1");bufferMgr.get(d2);System.out.println(d2.getDataValue());
+        Data d3 = new Data(DataType.FOURBYTES,"1");bufferMgr.get(d3);System.out.println(d3.getDataValue());
+        Data d4 = new Data(DataType.IP,"1");bufferMgr.get(d4);System.out.println(d4.getDataValue());
+        Data d5 = new Data(DataType.EIGHTBYTES,"1");bufferMgr.get(d5);System.out.println(d5.getDataValue());
+        Data d6 = new Data(DataType.STRING,"1");bufferMgr.get(d6);System.out.println(d6.getDataValue());
+        Data d7 = new Data(DataType.HEXSTRING,"1");bufferMgr.get(d7);System.out.println(d7.getDataValue());
+        Data d8 = new Data(DataType.HEXSTRING,"d8");bufferMgr.get(d8);System.out.println(d8.getDataValue());
+    }
+}
 /*
 public class Main{
     public static void main(String[] args)throws UnknownHostException{

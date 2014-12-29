@@ -95,4 +95,13 @@ public class Data {
         this.dataValue = "";
         this.dataList = arrayList;
     }
+    public Data(DataType dataType, String dataName)throws IllegalArgumentException
+    {
+        if(dataName.equals(""))
+            throw new IllegalArgumentException("名字不要为空哦");
+        this.dataType = dataType;
+        this.dataName = dataName;
+        this.dataValue = "";
+        this.dataList = null;
+    }
 }
