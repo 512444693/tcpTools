@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Date;
 
@@ -28,7 +29,8 @@ public class Tcp {
         BufferedOutputStream out =null;
         byte[] dataRec = new byte[0];
         try {
-            s = new Socket(host,port);
+            s = new Socket();
+            s.connect(new InetSocketAddress(host,port),1000);
         } catch (IOException e) {
             throw new IllegalStateException("连接服务器错误，服务器没启动或ip、端口错误");
         }
