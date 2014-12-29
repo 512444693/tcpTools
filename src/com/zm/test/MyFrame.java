@@ -231,7 +231,7 @@ public class MyFrame extends JFrame {
         setSize(screenWidth*2 / 3, screenHeight*2/ 3);
         //setLocationByPlatform(true);
         setLocation(screenWidth / 6, screenHeight / 6);
-        setTitle("TCP发包工具 v0.1");
+        setTitle("TCP发包工具 v0.2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private int screenHeight;
