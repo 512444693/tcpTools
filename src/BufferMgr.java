@@ -1,8 +1,4 @@
-package com.zm.test;
-
-import java.lang.reflect.Array;
 import java.net.UnknownHostException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +18,7 @@ public class BufferMgr {
             case ONEBYTE:
                 //byte b = Byte.parseByte(data.getDataValue()); 只能转换-127-128
                 byte b =(byte) Integer.parseInt(data.getDataValue());
-                buffer = ByteUtils.bytesMerger(buffer,b);
+                buffer = ByteUtils.bytesMerger(buffer, b);
                 break;
             case TWOBYTES:
                 short s = Short.parseShort(data.getDataValue());

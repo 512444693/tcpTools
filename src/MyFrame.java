@@ -1,13 +1,8 @@
-package com.zm.test;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.Date;
 
 /**
  * Created by Administrator on 2014/12/25.
@@ -108,7 +103,7 @@ public class MyFrame extends JFrame {
 
         byte[] dataRec = null;
         try {
-            if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer(),textSend,textRec)) != null)
+            if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer(), textSend, textRec)) != null)
             {
                 System.out.println("发送接收数据成功");
             }
@@ -238,8 +233,8 @@ public class MyFrame extends JFrame {
     private int screenWidth;
     private String[] dataStringTyes = {"oneByte","twoBytes","fourBytes",
             "ip","eightBytes","string","hexString",};
-    private DataType[] dataTypes = {DataType.ONEBYTE,DataType.TWOBYTES,DataType.FOURBYTES,
-            DataType.IP,DataType.EIGHTBYTES,DataType.STRING,DataType.HEXSTRING};
+    private DataType[] dataTypes = {DataType.ONEBYTE, DataType.TWOBYTES, DataType.FOURBYTES,
+            DataType.IP, DataType.EIGHTBYTES, DataType.STRING, DataType.HEXSTRING};
     int getDataTypeIndex(DataType dataType)
     {
         for(int i=0;i<dataTypes.length;i++)

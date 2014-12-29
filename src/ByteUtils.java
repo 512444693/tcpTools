@@ -1,6 +1,3 @@
-package com.zm.test;
-
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

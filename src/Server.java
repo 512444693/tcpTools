@@ -1,5 +1,3 @@
-package com.zm.test;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -24,7 +22,7 @@ public class Server {
             if((len = in.read(data)) != -1)
             {
                 //System.out.print(new String(data,0,len));
-                System.out.println(ByteUtils.bytes2HexGoodLook(ByteUtils.subBytes(data,0,len)));
+                System.out.println(ByteUtils.bytes2HexGoodLook(ByteUtils.subBytes(data, 0, len)));
             }
             s.shutdownInput();
             out.write("123".getBytes());
