@@ -63,8 +63,8 @@ public class MyFrame extends JFrame {
         panelOpt.add(buttonClear);
         panelOpt.add(buttonSend);
         panelLeft = new JPanel();
-        textIP = new JTextField("127.0.0.1",17);
-        textPort = new JTextField("8189",6);
+        textIP = new JTextField("192.168.200.116",17);
+        textPort = new JTextField("9779",6);
         panelIP = new JPanel();
         panelIP.add(textIP);
         panelIP.add(textPort);
@@ -108,17 +108,16 @@ public class MyFrame extends JFrame {
 
         byte[] dataRec = null;
         try {
-            if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer())) != null)
+            if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer(),textSend,textRec)) != null)
             {
-                textSend.setText(new Date().toLocaleString()+"\r\n\r\n"+ByteUtils.bytes2HexGoodLook(bufferMgr.getBuffer()).toString());
-                textRec.setText(new Date().toLocaleString()+"\r\n\r\n"+ByteUtils.bytes2HexGoodLook(dataRec).toString());
+                System.out.println("发送接收数据成功");
             }
             else
             {
                 JOptionPane.showMessageDialog(null,"接收数据失败");
             }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,"发送数据出错,服务器可能没启动哦   Ip，端口写对了吗？");
+        } catch (IllegalStateException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
             e.printStackTrace();
         }
     }
