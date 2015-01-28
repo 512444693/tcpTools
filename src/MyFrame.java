@@ -105,7 +105,7 @@ public class MyFrame extends JFrame {
         try {
             if ((dataRec = Tcp.send(textIP.getText(), Integer.parseInt(textPort.getText()), bufferMgr.getBuffer(), textSend, textRec)) != null)
             {
-                System.out.println("发送接收数据成功");
+                System.out.println("接收数据成功");
             }
             else
             {
@@ -113,7 +113,7 @@ public class MyFrame extends JFrame {
             }
         } catch (IllegalStateException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     class ButtonSendAction implements ActionListener{

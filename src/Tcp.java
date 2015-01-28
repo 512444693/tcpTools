@@ -35,7 +35,7 @@ public class Tcp {
             throw new IllegalStateException("连接服务器错误，服务器没启动或ip、端口错误");
         }
         try {
-            s.setSoTimeout(1000);
+            s.setSoTimeout(10000);
             in = new BufferedInputStream(s.getInputStream());
             out = new BufferedOutputStream(s.getOutputStream());
 
@@ -46,7 +46,7 @@ public class Tcp {
             System.out.println("发送数据成功");
             byte[] dataTemp = new byte[2014];
             int len = 0;
-            while((len = in.read(dataTemp)) != -1 )
+            if((len = in.read(dataTemp)) != -1 )
             {
                 dataRec = ByteUtils.bytesMerger(dataRec, dataTemp, 0, len);
             }
