@@ -3,6 +3,8 @@ import java.net.UnknownHostException;
 
 /**
  * 网络序
+ * TCP/IP协议规定，网络数据流应采用大端字节序，即低地址高字节。
+ * 将数据在内存中按照大端字节序存储
  * Created by zhangmin on 2014/12/24.
  */
 public class ByteUtils {
