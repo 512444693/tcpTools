@@ -52,15 +52,18 @@ public class Data {
         switch (dataType)
         {
             case ONEBYTE:
-                if(!dataValue.matches("[0-9]{1,3}"))
+                short b = Short.parseShort(dataValue);
+                if(b<Byte.MIN_VALUE || b>(Byte.MAX_VALUE -Byte.MIN_VALUE))
                     throw new IllegalArgumentException(dataName+"： 请输入正确的1个字节的数据");
                 break;
             case TWOBYTES:
-                if(!dataValue.matches("[0-9]{1,5}"))
+                int s = Integer.parseInt(dataValue);
+                if(s<Short.MIN_VALUE || s>(Short.MAX_VALUE -Integer.MIN_VALUE))
                     throw new IllegalArgumentException(dataName+"： 请输入正确的2个字节的数据");
                 break;
             case FOURBYTES:
-                if(!dataValue.matches("[0-9]{1,10}"))
+                long ii = Long.parseLong(dataValue);
+                if(ii<Integer.MIN_VALUE || ii>((long)Integer.MAX_VALUE -(long)Integer.MIN_VALUE))
                     throw new IllegalArgumentException(dataName+"： 请输入正确的4个字节的数据");
                 break;
             case IP:
@@ -80,7 +83,7 @@ public class Data {
                     char c = tmp.charAt(i);
                     if(ByteUtils.charToByte(c) == -1)
                         throw new IllegalArgumentException(dataName+"： 请输入正确的16进制数据");
-        }
+                }
                 break;
         }
         this.dataType = dataType;

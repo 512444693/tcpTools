@@ -22,15 +22,15 @@ public class BufferMgr {
         {
             case ONEBYTE:
                 //byte b = Byte.parseByte(data.getDataValue()); 只能转换-127-128
-                byte b =(byte) Integer.parseInt(data.getDataValue());
+                byte b =(byte) Short.parseShort(data.getDataValue());
                 buffer = ByteUtils.bytesMerger(buffer, b);
                 break;
             case TWOBYTES:
-                short s = Short.parseShort(data.getDataValue());
+                short s = (short) Integer.parseInt(data.getDataValue());
                 buffer = ByteUtils.bytesMerger(buffer,ByteUtils.short2Byte(s));
                 break;
             case FOURBYTES:
-                int i = Integer.parseInt(data.getDataValue());
+                int i = (int) Long.parseLong(data.getDataValue());
                 buffer = ByteUtils.bytesMerger(buffer,ByteUtils.int2Bytes(i));
                 break;
             case IP:

@@ -35,7 +35,7 @@ public class Tcp {
             throw new IllegalStateException("连接服务器错误，服务器没启动或ip、端口错误");
         }
         try {
-            s.setSoTimeout(10000);
+            s.setSoTimeout(3000);
             in = new BufferedInputStream(s.getInputStream());
             out = new BufferedOutputStream(s.getOutputStream());
 
@@ -64,7 +64,7 @@ public class Tcp {
                 e1.printStackTrace();
                 System.out.print("关闭资源异常");
             }
-            throw new IllegalStateException("1秒内服务器没有回包，断开连接");
+            throw new IllegalStateException("3秒内服务器没有回包，断开连接");
         }
         finally {
                 try {
