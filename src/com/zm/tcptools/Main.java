@@ -1,7 +1,6 @@
-import java.io.IOException;
+package com.zm.tcptools;
+
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Date;
 
 /*
  * Created by zhangmin on 2014/12/24.

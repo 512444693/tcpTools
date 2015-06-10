@@ -1,4 +1,4 @@
-package testtools.sessionmsg;
+package com.zm.sessionmsg;
 
 import javax.swing.*;
 import java.awt.*;

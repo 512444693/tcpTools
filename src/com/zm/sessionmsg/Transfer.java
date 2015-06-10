@@ -1,11 +1,11 @@
-package testtools.sessionmsg;
+package com.zm.sessionmsg;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.util.Date;
-
+import com.zm.tcptools.*;
 /**
  * Created by zhangmin on 2015/4/29.
  */

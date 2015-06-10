@@ -1,11 +1,11 @@
+package com.zm.tcptools;
+
 import java.util.ArrayList;
 
 /**
  * Created by zhangmin on 2014/12/25.
  */
-enum DataType{
-    ONEBYTE,TWOBYTES,FOURBYTES,IP,EIGHTBYTES,STRING,HEXSTRING,ARRAY
-}
+
 public class Data {
     private DataType dataType;
     private String dataName;
@@ -58,7 +58,7 @@ public class Data {
                 break;
             case TWOBYTES:
                 int s = Integer.parseInt(dataValue);
-                if(s<Short.MIN_VALUE || s>(Short.MAX_VALUE -Integer.MIN_VALUE))
+                if(s<Short.MIN_VALUE || s>(Short.MAX_VALUE -Short.MIN_VALUE))
                     throw new IllegalArgumentException(dataName+"： 请输入正确的2个字节的数据");
                 break;
             case FOURBYTES:
