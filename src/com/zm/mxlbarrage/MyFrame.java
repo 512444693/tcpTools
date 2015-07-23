@@ -47,11 +47,16 @@ public class MyFrame extends JFrame {
         buttonExit = new JButton("退出");
         buttonExit.setActionCommand("exit");
         buttonExit.addActionListener(bal);
+        buttonClear = new JButton("clear");
+        buttonClear.setActionCommand("clear");
+        buttonClear.addActionListener(bal);
         textGcid = new JTextField(108);
+        textGcid.setText("0123456789012345678901234567890123456789");
         textInfo = new JTextField(108);
+        textInfo.setText("abcd");
         logArea = new JTextArea("", 17, 80);
 
-        transfer = new Transfer("192.168.202.81", 8888);
+        transfer = new Transfer("192.168.202.81", 19353);
 
         panel.add(labelGcid);
         panel.add(textGcid);
@@ -60,6 +65,8 @@ public class MyFrame extends JFrame {
         panel.add(buttonQuery);
         panel.add(buttonPing);
         panel.add(buttonExit);
+        panel.add(buttonClear);
+
         panel.add(new JScrollPane(logArea));
         this.add(panel);
     }
@@ -90,6 +97,7 @@ public class MyFrame extends JFrame {
     private JButton buttonQuery;
     private JButton buttonPing;
     private JButton buttonExit;
+    private JButton buttonClear;
     private JLabel labelGcid;
     private JTextField textGcid;
     private JLabel labelInfo;
@@ -114,6 +122,10 @@ public class MyFrame extends JFrame {
                     break;
                 case "exit" :
                     transfer.sendExit(textGcid.getText());
+                    break;
+                case "clear" :
+                    clear();
+                    break;
                 default : return;
             }
         }

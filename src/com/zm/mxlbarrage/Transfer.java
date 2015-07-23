@@ -35,11 +35,9 @@ public class Transfer {
         System.out.println("4 "+new Date().toLocaleString());
         try {
             bufferMgr.put(new Data(DataType.FOURBYTES, "protocolversion", "200"));
-            bufferMgr.put(new Data(DataType.FOURBYTES,"seq","1"));
             bufferMgr.put(new Data(DataType.ONEBYTE, "command", "60"));
             bufferMgr.put(new Data(DataType.HEXSTRING, "gcid", gcid));
             bufferMgr.put(new Data(DataType.STRING, "info", info));
-            bufferMgr.encode();
             System.out.println("5 "+new Date().toLocaleString());
             udpSend.send(bufferMgr.getBuffer(), ip, port);
             System.out.println("6 "+new Date().toLocaleString());
@@ -52,10 +50,8 @@ public class Transfer {
         BufferMgr  bufferMgr = new BufferMgr();
         try {
             bufferMgr.put(new Data(DataType.FOURBYTES, "protocolversion", "200"));
-            bufferMgr.put(new Data(DataType.FOURBYTES,"seq","1"));
             bufferMgr.put(new Data(DataType.ONEBYTE, "command", "64"));
             bufferMgr.put(new Data(DataType.HEXSTRING, "gcid", gcid));
-            bufferMgr.encode();
             udpSend.send(bufferMgr.getBuffer(), ip, port);
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -66,10 +62,8 @@ public class Transfer {
         BufferMgr  bufferMgr = new BufferMgr();
         try {
             bufferMgr.put(new Data(DataType.FOURBYTES, "protocolversion", "200"));
-            bufferMgr.put(new Data(DataType.FOURBYTES,"seq","1"));
             bufferMgr.put(new Data(DataType.ONEBYTE, "command", "66"));
             bufferMgr.put(new Data(DataType.HEXSTRING, "gcid", gcid));
-            bufferMgr.encode();
             udpSend.send(bufferMgr.getBuffer(), ip, port);
         } catch (UnknownHostException e) {
             e.printStackTrace();
