@@ -22,6 +22,16 @@ public class MyFrame extends JFrame {
         }
         SwingUtilities.updateComponentTreeUI(myFrame);
         myFrame.setVisible(true);
+        /*
+        for(int i=0; i<20 ;i++){
+            myFrame.transfer.sendQuery("0123456789012345678901234567890123456789", new Integer(i).toString());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        */
     }
 
     public MyFrame(){
@@ -113,9 +123,7 @@ public class MyFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()){
                 case "query" :
-                    System.out.println("1 "+new Date().toLocaleString());
                     transfer.sendQuery(textGcid.getText(), textInfo.getText());
-                    System.out.println("2 "+new Date().toLocaleString());
                     break;
                 case "ping" :
                     transfer.sendPing(textGcid.getText());

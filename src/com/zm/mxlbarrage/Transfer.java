@@ -30,17 +30,13 @@ public class Transfer {
     }
 
     public void sendQuery(String gcid, String info){
-        System.out.println("3 "+new Date().toLocaleString());
         BufferMgr  bufferMgr = new BufferMgr();
-        System.out.println("4 "+new Date().toLocaleString());
         try {
             bufferMgr.put(new Data(DataType.FOURBYTES, "protocolversion", "200"));
             bufferMgr.put(new Data(DataType.ONEBYTE, "command", "60"));
             bufferMgr.put(new Data(DataType.HEXSTRING, "gcid", gcid));
             bufferMgr.put(new Data(DataType.STRING, "info", info));
-            System.out.println("5 "+new Date().toLocaleString());
             udpSend.send(bufferMgr.getBuffer(), ip, port);
-            System.out.println("6 "+new Date().toLocaleString());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
