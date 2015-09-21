@@ -121,7 +121,7 @@ public class ByteUtils {
      */
     public static StringBuffer bytes2Hex(byte[] data, int off, int length) {
         StringBuffer buf = new StringBuffer(data.length * 2);
-        for (int i = off; i < length; i++) {
+        for (int i = off; i < (off + length); i++) {
             if (((int) data[i] & 0xff) < 0x10) {
                 buf.append("0");
             }
@@ -258,7 +258,7 @@ public class ByteUtils {
         int position = 0;
         for(int i=0; i<arg1.length; i++)
             ret[position++] = arg1[i];
-        for(int i=offset; i<length; i++)
+        for(int i=offset; i<(offset + length); i++)
             ret[position++] = arg2[i];
         return ret;
     }
